@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tab-Opening Chain Reaction (Faster)</title>
+</head>
+<body>
+  <button id="startButton">Start Chain</button>
+  <button id="stopButton" disabled>Stop Chain</button>
+  <script>
+    let intervalId;
+    const startButton = document.getElementById('startButton');
+    const stopButton = document.getElementById('stopButton');
+    function openTab() {
+      window.open('about:blank', '_blank');
+    }
+    startButton.addEventListener('click', () => {
+      intervalId = setInterval(openTab, 100); // Reduced delay to 100 milliseconds
+      startButton.disabled = true;
+      stopButton.disabled = false;
+    });
+    stopButton.addEventListener('click', () => {
+      clearInterval(intervalId); 
+      startButton.disabled = false;
+      stopButton.disabled = true;
+    });
+  </script>
+</body>
+</html>
